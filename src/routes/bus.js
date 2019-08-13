@@ -1,9 +1,14 @@
 import { Router } from "express";
-import { createBus } from "../controllers/bus.controller";
+import { createBus, getBus, getOneBus } from "../controllers/bus.controller";
 
 const router = Router();
 
 // /api/bus/
 router.post("/", createBus);
+router.get("/", getBus);
+
+// /api/bus/:busIid
+
+router.get("/:bus_id", getOneBus);
 
 export default router;
