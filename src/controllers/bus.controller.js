@@ -1,11 +1,20 @@
 import Bus from "../models/bus";
-import { log } from "util";
 
 export async function getBus(req, res) {
-  const buses = await Bus.findAll();
-  res.json({
-    data: buses
-  });
+  try {
+    const buses = await Bus.findAll({
+      attributes: ["bus_id", "bus_data", "bus_estado", "bus_empresa_id"],
+      where: {
+        bus_estado: "activo"
+      },
+      order: [["bus_id", "DESC"]]
+    });
+    res.json({
+      data: buses
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 export async function createBus(req, res) {
   try {
@@ -16,8 +25,8 @@ export async function createBus(req, res) {
     //   res.send("valor creado");
     let newbus = await Bus.create(
       {
-        bus_data: bus_data,
-        bus_empresa_id: bus_empresa_id
+        bus_data,
+        bus_empresa_id
       },
       { fields: ["bus_data", "bus_empresa_id"] }
     );
@@ -64,15 +73,14 @@ export async function updateBus(req, res) {
   const busUpdate = await Bus.findOne({
     // attributes: ["bus_data", "bus_empresa_id"],
     where: {
-      bus_id:bus_id
+      bus_id
     }
   });
-
 
   busUpdate.update({
     bus_data,
     bus_empresa_id
-  })
+  });
   return res.json({
     message: "bus actualizado",
     data: busUpdate

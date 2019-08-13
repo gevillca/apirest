@@ -1,9 +1,9 @@
 import Sequelize from "sequelize";
 import { sequelize } from "../database/database";
-import Pasajero from "./pasajero";
+// import Pasajero from "./pasajero";
 
 const Bus = sequelize.define(
-  "bu",
+  "bus",
   {
     bus_id: {
       type: Sequelize.INTEGER,
@@ -26,12 +26,13 @@ const Bus = sequelize.define(
     }
   },
   {
-    timestamps: false
+    timestamps: false,
+    tableName: "bus"
   }
 );
 
-Bus.hasMany(Pasajero, { foreingKey: "pasajero_bus_id", sourcekey: "bus_id" });
-Pasajero.belongsTo(Bus, { foreingKey: "pasajero_bus_id", sourcekey: "bus_id" });
+// Bus.hasMany(Pasajero, { foreingKey: "pasajero_bus_id", sourcekey: "bus_id" });
+// Pasajero.belongsTo(Bus, { foreingKey: "pasajero_bus_id", sourcekey: "bus_id" });
 
 export default Bus;
 
