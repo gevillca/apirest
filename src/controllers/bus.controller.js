@@ -1,4 +1,5 @@
 import Bus from "../models/bus";
+import { log } from "util";
 
 export async function getBus(req, res) {
   const buses = await Bus.findAll();
@@ -40,4 +41,31 @@ export async function getOneBus(req, res) {
     }
   });
   res.json({ data: busOne });
+}
+
+export async function deleteBus(req, res) {
+  const { bus_id } = req.params;
+  // const { bus_estado } = req.body;
+  const busDelOne = await Bus.findOne({
+    where: {
+      bus_id
+    }
+  });
+  busDelOne.update({
+    bus_estado:'inactivo'
+  });
+  res.json(busDelOne);
+}
+
+export async function updateBus(req,res){
+  const {bus_id}=req.params;
+  const {bus_data,bus_empresa_id}=req.body;
+
+  const bosUpd= await Bus.findAll({
+    where:{
+      bus_id
+    }
+  })
+  
+
 }
