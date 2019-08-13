@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createBus, getBus, getOneBus, deleteBus } from "../controllers/bus.controller";
+import { createBus, getBus, getOneBus, deleteBus, updateBus } from "../controllers/bus.controller";
 
 const router = Router();
 
@@ -10,7 +10,8 @@ router.get("/", getBus);
 // /api/bus/:busIid
 
 router.get("/:bus_id", getOneBus);
-
 router.patch("/:bus_id", deleteBus);
+router.put("/:bus_id", updateBus);
+
 
 export default router;

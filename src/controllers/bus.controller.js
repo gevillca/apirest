@@ -52,20 +52,29 @@ export async function deleteBus(req, res) {
     }
   });
   busDelOne.update({
-    bus_estado:'inactivo'
+    bus_estado: "inactivo"
   });
   res.json(busDelOne);
 }
 
-export async function updateBus(req,res){
-  const {bus_id}=req.params;
-  const {bus_data,bus_empresa_id}=req.body;
+export async function updateBus(req, res) {
+  const { bus_id } = req.params;
+  const { bus_data, bus_empresa_id } = req.body;
 
-  const bosUpd= await Bus.findAll({
-    where:{
-      bus_id
+  const busUpdate = await Bus.findOne({
+    // attributes: ["bus_data", "bus_empresa_id"],
+    where: {
+      bus_id:bus_id
     }
-  })
-  
+  });
 
+
+  busUpdate.update({
+    bus_data,
+    bus_empresa_id
+  })
+  return res.json({
+    message: "bus actualizado",
+    data: busUpdate
+  });
 }
