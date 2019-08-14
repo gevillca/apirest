@@ -86,3 +86,6 @@ export async function updateBus(req, res) {
     data: busUpdate
   });
 }
+// export async function getPasajeroBus(req,res){
+//   const { }
+// }

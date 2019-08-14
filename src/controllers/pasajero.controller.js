@@ -3,13 +3,16 @@ import Pasajero from "../models/pasajero";
 export async function getPasajero(req, res) {
   try {
     const pasajeros = await Pasajero.findAll({
-      attributes:['pasajero_id','pasajero_data','pasajero_estado','pasajero_bus_id'],
-      where:{
-        pasajero_estado:'activo'
+      attributes: [
+        "pasajero_id",
+        "pasajero_data",
+        "pasajero_estado",
+        "pasajero_bus_id"
+      ],
+      where: {
+        pasajero_estado: "activo"
       },
-      order:[
-        ['pasajero_id','DESC']
-      ]
+      order: [["pasajero_id", "DESC"]]
     });
     res.json({ data: pasajeros });
   } catch (error) {
@@ -72,5 +75,18 @@ export async function updatePasajero(req, res) {
     data: pasajeroUp
   });
 }
-// export async function getPasajero(req,res){
-// }
+export async function getPasajeroBus(req, res) {
+  const { pasajero_bus_id } = req.params;
+  const pasajeroBus = await Pasajero.findAll({
+    attributes: [
+      "pasajero_id",
+      "pasajero_data",
+      "pasajero_estado",
+      "pasajero_bus_id"
+    ],
+    where: {
+      pasajero_bus_id
+    }
+  });
+   res.json(pasajeroBus);
+}

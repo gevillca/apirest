@@ -34,10 +34,10 @@ CREATE TABLE asiento
 (
   asiento_id serial PRIMARY KEY,
   asiento_data jsonb,
-  asiento_pasajero_id integer,
   asiento_registrado timestamp without time zone NOT NULL DEFAULT now(),
   asiento_modificado timestamp without time zone NOT NULL DEFAULT now(),
-  asiento_estado text NOT NULL DEFAULT 'activo'
+  asiento_estado text NOT NULL DEFAULT 'activo',
+  asiento_pasajero_id integer references pasajero(pasajero_id)
 );
 
 --INSERTAR LOS DATOS TABLA EMPRESA
