@@ -88,5 +88,20 @@ export async function getPasajeroBus(req, res) {
       pasajero_bus_id
     }
   });
-   res.json(pasajeroBus);
+  res.json(pasajeroBus);
 }
+
+// export async function getNamePasajero(req, res) {
+//   const { nombre } = req.params;
+//   // const { pasajero_data } = req.body;
+//   // reference->"$.orderItemId" = 2
+//   //    sequelize.literal('facebook->"$.id"'),
+//   const namePasajero = await findOne({
+//     where: {
+//       pasajero_data: {
+//         nombre
+//       }
+//     }
+//   });
+//   res.json(namePasajero);
+// }

@@ -9,9 +9,13 @@ var _express = _interopRequireWildcard(require("express"));
 
 var _morgan = _interopRequireDefault(require("morgan"));
 
-var _projects = _interopRequireDefault(require("./routes/projects"));
+var _empresa = _interopRequireDefault(require("./routes/empresa"));
 
-var _tasks = _interopRequireDefault(require("./routes/tasks"));
+var _bus = _interopRequireDefault(require("./routes/bus"));
+
+var _pasajero = _interopRequireDefault(require("./routes/pasajero"));
+
+var _asiento = _interopRequireDefault(require("./routes/asiento"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -22,7 +26,9 @@ var app = (0, _express["default"])(); // middelwares
 app.use((0, _morgan["default"])("dev"));
 app.use((0, _express.json)()); // routes
 
-app.use("/api/projects", (0, _projects["default"])());
-app.use("/api/tasks", (0, _tasks["default"])());
+app.use("/api/empresa", _empresa["default"]);
+app.use("/api/pasajeros", _pasajero["default"]);
+app.use("/api/bus", _bus["default"]);
+app.use("/api/asiento", _asiento["default"]);
 var _default = app;
 exports["default"] = _default;
